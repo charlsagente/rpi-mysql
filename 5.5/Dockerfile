@@ -1,4 +1,7 @@
-FROM resin/rpi-raspbian:latest
+#FROM resin/rpi-raspbian:latest
+FROM jsurf/rpi-raspbian:latest
+
+RUN [ "cross-build-start" ]
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mysql && useradd -r -g mysql mysql
@@ -47,6 +50,8 @@ RUN { \
 RUN sed -Ei 's/^(bind-address|log)/#&/' /etc/mysql/my.cnf \
 	&& echo '[mysqld]\nskip-host-cache\nskip-name-resolve' > /etc/mysql/conf.d/docker.cnf
 
+RUN [ "cross-build-end" ]
+	
 VOLUME /var/lib/mysql
 
 COPY docker-entrypoint.sh /usr/local/bin/
