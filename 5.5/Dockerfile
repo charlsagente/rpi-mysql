@@ -3,11 +3,14 @@ FROM jsurf/rpi-raspbian:latest
 
 RUN [ "cross-build-start" ]
 
+ENV LANG C.UTF-8
+ENV TZ Europe/Berlin
+
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mysql && useradd -r -g mysql mysql
 
 # add gosu for easy step-down from root
-ENV GOSU_VERSION 1.7
+ENV GOSU_VERSION 1.10
 RUN set -x \
 	&& apt-get update && apt-get install -y --no-install-recommends ca-certificates wget && rm -rf /var/lib/apt/lists/* \
 	&& wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture)" \
@@ -50,13 +53,14 @@ RUN { \
 RUN sed -Ei 's/^(bind-address|log)/#&/' /etc/mysql/my.cnf \
 	&& echo '[mysqld]\nskip-host-cache\nskip-name-resolve' > /etc/mysql/conf.d/docker.cnf
 
-RUN [ "cross-build-end" ]
-	
-VOLUME /var/lib/mysql
-
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
+
+RUN [ "cross-build-end" ]
+
+VOLUME /var/lib/mysql
+
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 3306
