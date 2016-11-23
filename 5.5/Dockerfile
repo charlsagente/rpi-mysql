@@ -3,8 +3,8 @@ FROM jsurf/rpi-raspbian:latest
 
 RUN [ "cross-build-start" ]
 
-ENV LANG C.UTF-8
-ENV TZ Europe/Berlin
+#ENV LANG C.UTF-8
+#ENV TZ Europe/Berlin
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mysql && useradd -r -g mysql mysql
