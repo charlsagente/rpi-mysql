@@ -1,6 +1,6 @@
 # MySQL on Raspberry Pi / armhf
 
-This is a port of the official MySQL image https://github.com/docker-library/mysql for Raspberry Pi / armhf.
+This is a port of the official MySQL image https://hub.docker.com/_/mysql/ for Raspberry Pi / armhf.
 
 ### Supported tags and respective `Dockerfile` links
 -	[`5.6`, `latest` (*Dockerfile*)](https://github.com/TobiasH87Docker/rpi-mysql/blob/master/5.6/Dockerfile)
@@ -26,7 +26,7 @@ or build it yourself
 ### Environment Variables
 * `TZ` (Default: Europe/Berlin)
 * `MYSQL_ROOT_PASSWORD`
-* more see: https://github.com/docker-library/mysql
+* more see: https://hub.docker.com/_/mysql/
 
 ### This Image on
 * [DockerHub](https://hub.docker.com/r/tobi312/rpi-mysql/)
