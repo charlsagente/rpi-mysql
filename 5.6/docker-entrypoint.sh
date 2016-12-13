@@ -91,10 +91,10 @@ if [ "$1" = 'mysqld' -a -z "$wantHelp" ]; then
 		mkdir -p "$DATADIR"
 
 		echo 'Initializing database'
-		mysql_install_db --datadir="$DATADIR" --rpm --basedir=/usr
+		mysql_install_db --datadir="$DATADIR" --rpm --keep-my-cnf
 		echo 'Database initialized'
 
-		"$@" --skip-networking --basedir=/usr --socket=/var/run/mysqld/mysqld.sock &
+		"$@" --skip-networking --socket=/var/run/mysqld/mysqld.sock &
 		pid="$!"
 
 		mysql=( mysql --protocol=socket -uroot -hlocalhost --socket=/var/run/mysqld/mysqld.sock)
@@ -166,9 +166,9 @@ if [ "$1" = 'mysqld' -a -z "$wantHelp" ]; then
 		done
 
 		if [ ! -z "$MYSQL_ONETIME_PASSWORD" ]; then
-			echo >&2
-			echo >&2 'Sorry, this version of MySQL does not support "PASSWORD EXPIRE" (required for MYSQL_ONETIME_PASSWORD).'
-			echo >&2
+			"${mysql[@]}" <<-EOSQL
+				ALTER USER 'root'@'%' PASSWORD EXPIRE;
+			EOSQL
 		fi
 		if ! kill -s TERM "$pid" || ! wait "$pid"; then
 			echo >&2 'MySQL init process failed.'
