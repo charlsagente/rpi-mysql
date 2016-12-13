@@ -1,20 +1,32 @@
-# MySQL on Raspberry Pi
+# MySQL on Raspberry Pi / armhf
 
-### Image Info
-This Image based on the Docker official image for mysql
-* https://hub.docker.com/_/mysql/
-* https://github.com/docker-library/mysql
+This is a port of the official mysql image https://github.com/docker-library/mysql for Raspberry Pi / armhf.
+
+### Supported tags and respective `Dockerfile` links
+-	[`5.6`, `latest` (*Dockerfile*)](https://github.com/TobiasH87Docker/rpi-mysql/blob/master/5.6/Dockerfile)
+-	[`5.5` (*Dockerfile*)](https://github.com/TobiasH87Docker/rpi-mysql/blob/master/5.5/Dockerfile)
+
+### What is MySQL?
+MySQL is the world's most popular open source database. With its proven performance, reliability and ease-of-use, MySQL has become the leading database choice for web-based applications, covering the entire range from personal projects and websites, via e-commerce and information services, all the way to high profile web properties including Facebook, Twitter, YouTube, Yahoo! and many more.
+For more information and related downloads for MySQL Server and other MySQL products, please visit [MySQL.com](https://www.mysql.com/) or [wikipedia.org/wiki/MySQL](https://en.wikipedia.org/wiki/MySQL)
+
+![logo](https://raw.githubusercontent.com/docker-library/docs/master/mysql/logo.png)
 
 ### How to use this image
-* ``` docker pull tobi312/rpi-mysql:5.5 ```
+* ``` docker pull tobi312/rpi-mysql ```
 * Optional: ``` mkdir -p /home/pi/.local/share/mysql ```
-* ``` docker run --name mysql -d -p 3306:3306 -v /home/pi/.local/share/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw tobi312/rpi-mysql:5.5 ``` 
+* ``` docker run --name mysql -d -p 3306:3306 -v /home/pi/.local/share/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw tobi312/rpi-mysql ``` 
 
 or build it yourself
-* ``` git clone https://github.com/TobiasH87Docker/rpi-mysql && cd rpi-mysql/5.5 ```
+* ``` git clone https://github.com/TobiasH87Docker/rpi-mysql && cd rpi-mysql ```
 * Optional: ``` mkdir -p /home/pi/.local/share/mysql ```
-* ``` docker build -t tobi312/rpi-mysql:5.5 . ``` 
-* ``` docker run --name mysql -d -p 3306:3306 -v /home/pi/.local/share/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw tobi312/rpi-mysql:5.5 ``` 
+* ``` docker build -t tobi312/rpi-mysql ./VERSION/ ``` 
+* ``` docker run --name mysql -d -p 3306:3306 -v /home/pi/.local/share/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw tobi312/rpi-mysql ``` 
+
+### Environment Variables
+* `TZ` (Default: Europe/Berlin)
+* `MYSQL_ROOT_PASSWORD`
+* more see: https://github.com/docker-library/mysql
 
 ### This Image on
 * [DockerHub](https://hub.docker.com/r/tobi312/rpi-mysql/)
