@@ -19,8 +19,8 @@ For more information and related downloads for MySQL Server and other MySQL prod
 
 or build it yourself
 * ``` $ git clone https://github.com/TobiasH87Docker/rpi-mysql && cd rpi-mysql ```
-* Optional: ``` $ mkdir -p /home/pi/.local/share/mysql ```
 * ``` $ docker build -t tobi312/rpi-mysql ./VERSION/ ``` 
+* Optional: ``` $ mkdir -p /home/pi/.local/share/mysql ```
 * ``` $ docker run --name mysql -d -p 3306:3306 -v /home/pi/.local/share/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw tobi312/rpi-mysql ``` 
 
 ### Environment Variables
