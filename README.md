@@ -3,7 +3,8 @@
 This is a port of the official MySQL image https://hub.docker.com/_/mysql/ for Raspberry Pi / armhf.
 
 ### Supported tags and respective `Dockerfile` links
--	[`5.6`, `latest` (*Dockerfile*)](https://github.com/TobiasH87Docker/rpi-mysql/blob/master/5.6/Dockerfile)
+-	[`5.7`, `latest` (*Dockerfile*)](https://github.com/TobiasH87Docker/rpi-mysql/blob/master/5.7/Dockerfile)
+-	[`5.6` outdated (*Dockerfile*)](https://github.com/TobiasH87Docker/rpi-mysql/blob/master/5.6/Dockerfile)
 -	[`5.5` (*Dockerfile*)](https://github.com/TobiasH87Docker/rpi-mysql/blob/master/5.5/Dockerfile)
 
 ### What is MySQL?
