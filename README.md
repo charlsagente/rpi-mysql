@@ -3,8 +3,7 @@
 This is a port of the official MySQL image https://hub.docker.com/_/mysql/ for Raspberry Pi / armhf.
 
 ### Supported tags and respective `Dockerfile` links
--	[`5.6`, `latest` (*Dockerfile*)](https://github.com/TobiasH87Docker/rpi-mysql/blob/master/5.6/Dockerfile)
--	[`5.5` (*Dockerfile*)](https://github.com/TobiasH87Docker/rpi-mysql/blob/master/5.5/Dockerfile)
+-	[`5.5`, `latest` (*Dockerfile*)](https://github.com/TobiasH87Docker/rpi-mysql/blob/master/5.5/Dockerfile)
 
 ### What is MySQL?
 MySQL is the world's most popular open source database. With its proven performance, reliability and ease-of-use, MySQL has become the leading database choice for web-based applications, covering the entire range from personal projects and websites, via e-commerce and information services, all the way to high profile web properties including Facebook, Twitter, YouTube, Yahoo! and many more.
