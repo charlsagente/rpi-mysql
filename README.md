@@ -11,40 +11,39 @@ This is a port of the official MySQL image https://hub.docker.com/_/mysql/ for R
 * ``` docker pull charlsagente/raspberry-mysql ```
 
 ### Usage in compose file
+```yaml
+version: '3.7'
 
-  ```
-  version: '3.7'
+services:
 
-  services:
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
 
-    wordpress:
-      image: wordpress
-      restart: always
-      ports:
-        - 8080:80
-      environment:
-        WORDPRESS_DB_HOST: db
-        WORDPRESS_DB_USER: exampleuser
-        WORDPRESS_DB_PASSWORD: examplepass
-        WORDPRESS_DB_NAME: exampledb
+  db:
+    image: charlsagente/raspberry-mysql
+    #build: #Uncomment build if you want to build the image by your self
+      #context: .
+      #dockerfile: Dockerfile
+    volumes:
+      - db-data:/var/lib/mysql/data
+    restart: always
+    environment:
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
 
-    db:
-      image: charlsagente/raspberry-mysql
-      #build: #Uncomment build if you want to build the image by your self
-        #context: .
-        #dockerfile: Dockerfile
-      volumes:
-        - db-data:/var/lib/mysql/data
-      restart: always
-      environment:
-        MYSQL_DATABASE: exampledb
-        MYSQL_USER: exampleuser
-        MYSQL_PASSWORD: examplepass
-        MYSQL_RANDOM_ROOT_PASSWORD: '1'
-
-  volumes:
-    db-data:
-  ```
+volumes:
+  db-data:
+```
 
 or build it yourself
 * ``` $ git clone https://github.com/charlsagente/rpi-mysql/ && cd rpi-mysql ```
