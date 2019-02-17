@@ -1,10 +1,8 @@
-#FROM balenalib/rpi-raspbian:jessie
 FROM jsurf/rpi-raspbian:latest
 
-RUN [ "cross-build-start" ]
 
 ENV LANG C.UTF-8
-ENV TZ Europe/Berlin
+ENV TZ America/Mexico_City
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mysql && useradd -r -g mysql mysql
@@ -56,8 +54,6 @@ RUN sed -Ei 's/^(bind-address|log)/#&/' /etc/mysql/my.cnf \
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
-
-RUN [ "cross-build-end" ]
 
 VOLUME /var/lib/mysql
 
